@@ -1,0 +1,94 @@
+// QMS质量管理系统 - 主题变量
+// 浙江腾腾电气专用配色方案
+
+// 主色调 - 质量蓝色系
+$primary-color: #1890ff;
+$primary-light: #40a9ff;
+$primary-dark: #096dd9;
+$primary-gradient: linear-gradient(135deg, #1890ff 0%, #096dd9 100%);
+
+// 辅助色调
+$secondary-color: #722ed1;
+$success-color: #52c41a;
+$warning-color: #faad14;
+$error-color: #f5222d;
+$info-color: #13c2c2;
+
+// 质量状态色彩
+$quality-excellent: #52c41a;
+$quality-good: #1890ff;
+$quality-warning: #faad14;
+$quality-critical: #f5222d;
+$quality-pending: #d9d9d9;
+
+// 背景色
+$bg-primary: #f0f2f5;
+$bg-secondary: #fafafa;
+$bg-white: #ffffff;
+$bg-dark: #001529;
+
+// 文字色彩
+$text-primary: #262626;
+$text-secondary: #595959;
+$text-disabled: #bfbfbf;
+$text-white: #ffffff;
+
+// 边框色彩
+$border-color: #d9d9d9;
+$border-light: #f0f0f0;
+$border-dark: #434343;
+
+// 阴影
+$shadow-light: 0 2px 8px rgba(0, 0, 0, 0.06);
+$shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.15);
+$shadow-heavy: 0 8px 24px rgba(0, 0, 0, 0.12);
+
+// 圆角
+$border-radius-small: 4px;
+$border-radius-medium: 6px;
+$border-radius-large: 8px;
+
+// 间距
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 32px;
+
+// 字体大小
+$font-size-xs: 12px;
+$font-size-sm: 14px;
+$font-size-md: 16px;
+$font-size-lg: 18px;
+$font-size-xl: 20px;
+$font-size-xxl: 24px;
+
+// 质量管理特色渐变
+$quality-gradient: linear-gradient(135deg, #1890ff 0%, #722ed1 50%, #13c2c2 100%);
+$inspection-gradient: linear-gradient(45deg, #52c41a 0%, #1890ff 100%);
+$control-gradient: linear-gradient(135deg, #722ed1 0%, #eb2f96 100%);
+$analysis-gradient: linear-gradient(45deg, #13c2c2 0%, #1890ff 100%);
+
+// 动画时长
+$transition-fast: 0.2s;
+$transition-medium: 0.3s;
+$transition-slow: 0.5s;
+
+// 质量检测动画效果
+@keyframes qualityPulse {
+  0% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.05); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes qualityFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes qualityGlow {
+  0% { box-shadow: 0 0 5px rgba(24, 144, 255, 0.3); }
+  50% { box-shadow: 0 0 20px rgba(24, 144, 255, 0.6); }
+  100% { box-shadow: 0 0 5px rgba(24, 144, 255, 0.3); }
+}

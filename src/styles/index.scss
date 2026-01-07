@@ -1,0 +1,426 @@
+// QMS质量管理系统 - 全局样式
+@import './variables.scss';
+
+// 全局重置
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background-color: $bg-primary;
+  color: $text-primary;
+  line-height: 1.6;
+}
+
+// 全局容器
+.qms-container {
+  min-height: 100vh;
+  background: $bg-primary;
+}
+
+// 页面标题
+.page-title {
+  font-size: $font-size-xxl;
+  font-weight: 600;
+  color: $text-primary;
+  margin-bottom: $spacing-lg;
+  
+  &.with-gradient {
+    background: $quality-gradient;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+// 卡片样式
+.qms-card {
+  background: $bg-white;
+  border-radius: $border-radius-large;
+  box-shadow: $shadow-light;
+  padding: $spacing-lg;
+  margin-bottom: $spacing-md;
+  transition: all $transition-medium ease;
+  
+  &:hover {
+    box-shadow: $shadow-medium;
+    transform: translateY(-2px);
+  }
+  
+  &.quality-card {
+    border-left: 4px solid $primary-color;
+    
+    &.excellent {
+      border-left-color: $quality-excellent;
+    }
+    
+    &.good {
+      border-left-color: $quality-good;
+    }
+    
+    &.warning {
+      border-left-color: $quality-warning;
+    }
+    
+    &.critical {
+      border-left-color: $quality-critical;
+    }
+  }
+}
+
+// 质量状态指示器
+.quality-status {
+  display: inline-flex;
+  align-items: center;
+  padding: $spacing-xs $spacing-sm;
+  border-radius: $border-radius-small;
+  font-size: $font-size-sm;
+  font-weight: 500;
+  
+  &.excellent {
+    background-color: rgba(82, 196, 26, 0.1);
+    color: $quality-excellent;
+    border: 1px solid rgba(82, 196, 26, 0.3);
+  }
+  
+  &.good {
+    background-color: rgba(24, 144, 255, 0.1);
+    color: $quality-good;
+    border: 1px solid rgba(24, 144, 255, 0.3);
+  }
+  
+  &.warning {
+    background-color: rgba(250, 173, 20, 0.1);
+    color: $quality-warning;
+    border: 1px solid rgba(250, 173, 20, 0.3);
+  }
+  
+  &.critical {
+    background-color: rgba(245, 34, 45, 0.1);
+    color: $quality-critical;
+    border: 1px solid rgba(245, 34, 45, 0.3);
+  }
+  
+  &.pending {
+    background-color: rgba(217, 217, 217, 0.1);
+    color: $quality-pending;
+    border: 1px solid rgba(217, 217, 217, 0.3);
+  }
+}
+
+// 质量指标卡片
+.quality-metric-card {
+  background: $bg-white;
+  border-radius: $border-radius-large;
+  padding: $spacing-lg;
+  text-align: center;
+  box-shadow: $shadow-light;
+  transition: all $transition-medium ease;
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: $quality-gradient;
+  }
+  
+  &:hover {
+    box-shadow: $shadow-medium;
+    transform: translateY(-4px);
+  }
+  
+  .metric-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: $primary-color;
+    margin-bottom: $spacing-sm;
+    
+    &.excellent { color: $quality-excellent; }
+    &.good { color: $quality-good; }
+    &.warning { color: $quality-warning; }
+    &.critical { color: $quality-critical; }
+  }
+  
+  .metric-label {
+    font-size: $font-size-md;
+    color: $text-secondary;
+    margin-bottom: $spacing-xs;
+  }
+  
+  .metric-trend {
+    font-size: $font-size-sm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: $spacing-xs;
+    
+    &.up {
+      color: $success-color;
+    }
+    
+    &.down {
+      color: $error-color;
+    }
+    
+    &.stable {
+      color: $text-secondary;
+    }
+  }
+}
+
+// 质量检测动画
+.quality-pulse {
+  animation: qualityPulse 2s infinite;
+}
+
+.quality-glow {
+  animation: qualityGlow 3s infinite;
+}
+
+.quality-flow {
+  background: $quality-gradient;
+  background-size: 200% 200%;
+  animation: qualityFlow 4s ease infinite;
+}
+
+// 质量流程步骤
+.quality-steps {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: $spacing-lg 0;
+  
+  .step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    position: relative;
+    
+    &:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      top: 20px;
+      right: -50%;
+      width: 100%;
+      height: 2px;
+      background: $border-light;
+      z-index: 1;
+    }
+    
+    &.active {
+      .step-icon {
+        background: $primary-color;
+        color: $text-white;
+        box-shadow: 0 0 0 4px rgba(24, 144, 255, 0.2);
+      }
+      
+      &::after {
+        background: $primary-color;
+      }
+    }
+    
+    &.completed {
+      .step-icon {
+        background: $success-color;
+        color: $text-white;
+      }
+      
+      &::after {
+        background: $success-color;
+      }
+    }
+    
+    .step-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: $bg-secondary;
+      color: $text-secondary;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: $font-size-lg;
+      margin-bottom: $spacing-sm;
+      transition: all $transition-medium ease;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .step-title {
+      font-size: $font-size-sm;
+      color: $text-secondary;
+      text-align: center;
+      font-weight: 500;
+    }
+    
+    &.active .step-title,
+    &.completed .step-title {
+      color: $text-primary;
+      font-weight: 600;
+    }
+  }
+}
+
+// 质量图表容器
+.quality-chart-container {
+  background: $bg-white;
+  border-radius: $border-radius-large;
+  padding: $spacing-lg;
+  box-shadow: $shadow-light;
+  margin-bottom: $spacing-md;
+  
+  .chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: $spacing-lg;
+    
+    .chart-title {
+      font-size: $font-size-lg;
+      font-weight: 600;
+      color: $text-primary;
+    }
+    
+    .chart-actions {
+      display: flex;
+      gap: $spacing-sm;
+    }
+  }
+  
+  .chart-content {
+    height: 400px;
+    position: relative;
+  }
+}
+
+// 质量数据表格
+.quality-table {
+  .el-table {
+    border-radius: $border-radius-medium;
+    overflow: hidden;
+    
+    .el-table__header {
+      background: $bg-secondary;
+      
+      th {
+        background: $bg-secondary !important;
+        color: $text-primary;
+        font-weight: 600;
+      }
+    }
+    
+    .el-table__row {
+      &:hover {
+        background-color: rgba(24, 144, 255, 0.05) !important;
+      }
+    }
+  }
+}
+
+// 质量操作按钮
+.quality-actions {
+  display: flex;
+  gap: $spacing-sm;
+  margin-top: $spacing-md;
+  
+  .el-button {
+    border-radius: $border-radius-medium;
+    font-weight: 500;
+    
+    &.el-button--primary {
+      background: $primary-gradient;
+      border: none;
+      
+      &:hover {
+        opacity: 0.9;
+        transform: translateY(-1px);
+      }
+    }
+  }
+}
+
+// 质量搜索栏
+.quality-search {
+  background: $bg-white;
+  border-radius: $border-radius-large;
+  padding: $spacing-lg;
+  margin-bottom: $spacing-md;
+  box-shadow: $shadow-light;
+  
+  .search-form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: $spacing-md;
+    align-items: end;
+  }
+}
+
+// 响应式设计
+@media (max-width: 768px) {
+  .quality-metric-card {
+    .metric-value {
+      font-size: 2rem;
+    }
+  }
+  
+  .quality-steps {
+    flex-direction: column;
+    gap: $spacing-md;
+    
+    .step {
+      &::after {
+        display: none;
+      }
+    }
+  }
+  
+  .quality-search {
+    .search-form {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+// 质量管理特色动效
+.quality-inspection-effect {
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: $inspection-gradient;
+    border-radius: inherit;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity $transition-medium ease;
+  }
+  
+  &:hover::before {
+    opacity: 1;
+  }
+}
+
+.quality-control-effect {
+  background: $control-gradient;
+  background-size: 200% 200%;
+  animation: qualityFlow 6s ease infinite;
+}
+
+.quality-analysis-effect {
+  background: $analysis-gradient;
+  background-size: 200% 200%;
+  animation: qualityFlow 8s ease infinite;
+}
